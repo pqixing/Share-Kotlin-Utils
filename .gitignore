@@ -2,3 +2,5 @@
 /.idea
 /.gradle
 /Share-Kotlin-Utils.iml
+.gradle
+.idea
