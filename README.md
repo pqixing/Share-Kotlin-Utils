@@ -222,7 +222,7 @@ nameView.text = "橘右京"
 >
 ### 3. Kotlin使用
 ### 3.1 基础语法介绍
-你以为我会列出来吗？？？
+[你以为我会列出来吗？？？](https://github.com/huanglizhuo/kotlin-in-chinese)
 [Think too much](http://kotlinlang.org/docs/reference/basic-syntax.html) 
 > ![image](http://img1.cache.netease.com/house/2016/4/27/201604272032280c84c.jpg)
 
