@@ -5,6 +5,8 @@
  -   怎么又有新语言出来啊，简直要疯掉了
  -   有困难要上，没困难制造困难也要上。
  -   靠，这尼玛究竟是谁说的，好有道理！
+ 
+ 
    ![image](http://oa5504rxk.bkt.clouddn.com/week29_kotlin/3.png)
 
 
@@ -308,22 +310,162 @@ class C() : A(), B {
     }
 }
 ```
+### 3.2.2.3 data class 数据结构类
+``` 
+-equals()/hashCode() pair,
+-toString() of the form "User(name=John, age=42)",
+-copy() function (see below).
 
-### 3.2.2.3 Package Level Fun
+data class User(val name: String = "", val age: Int = 0)
 ```
-//example.kt
+默认实现copy方法
+```
+val jack = User(name = "Jack", age = 1)
+val olderJack = jack.copy(age = 2)
+```
+可以解构使用
+```
+val jane = User("Jane", 35) 
+val (name, age) = jane
+println("$name, $age years of age") // prints "Jane, 35 years of age"
+```
 
-fun test(){
-    println("test")
+### 3.2.2.4 object class 单例 (类似Java 的Utils)
+例子 
+> Java
+```
+public class CommonUtils{
+   public static void getCommonString(){}
+   public void setDefault(){}
+}
+```
+> Ktolin
+```
+class CommonUtils{
+  companion object {
+        fun getCommonString(){}
+    }
+    
+    fun setDefault(){}
+}
+```
+------ 纯粹的Utils类
+```
+object CommonUtils{
+     @JvmStatic //如果不加入,在Java中调用CommonUtils.companion.xxx
+     fun getCommonString(){}
+     ...
 }
 
-//Text.kt
-class Test(){
-    fun call(){
+```
+
+### 3.2.3 属性 Properties and Fields
+> 上代码
+```
+class Address {
+    var name: String = ...
+    var street: String = ...
+    var city: String = ...
+    var state: String? = ...
+    var zip: String = ...
+}
+```
+> The full syntax for declaring a property is
+```
+var <propertyName>[: <PropertyType>] [= <property_initializer>]
+    [<getter>]
+    [<setter>]
+```
+举个栗子
+```
+var stringRepresentation: String
+    get() = this.toString()
+    set(value) {
+        setDataFromString(value) // parses the string and assigns values to other properties
+    }
+```
+### 3.2.4 Functions 函数
+定义
+```
+fun funName(val param :String = ""):Unit{
+... body
+}
+
+funName()
+funName("newName")
+funName(param = "newName")
+```
+>支持表达式
+```
+fun double(x: Int): Int = x * 2
+fun double2(x: Int): Int = double(x)+2
+```
+> 可变参数
+```
+fun <T> asList(vararg ts: T): List<T> {
+    val result = ArrayList<T>()
+    for (t in ts) // ts is an Array
+        result.add(t)
+    return result
+}
+
+asList(1,2,3)
+```
+> 嵌套函数
+```
+fun dfs(graph: Graph) {
+    fun dfs(current: Vertex, visited: Set<Vertex>) {
+        if (!visited.add(current)) return
+        for (v in current.neighbors)
+            dfs(v, visited)
+    }
+
+    dfs(graph.vertices[0], HashSet())
+}
+```
+
+> Package Level Fun
+```
+//Example.kt
+fun test(){}
+
+//Test.kt
+class Test{
+    fun main(){
         test()
     }
 }
+
 ```
+
+> 拓展函数
+....省
+
+
+
+### 3.2.5 Collections 集合类
+通用创建方式 xxxOf(...items)
+```
+val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
+val readOnlyView: List<Int> = numbers
+println(numbers)        // prints "[1, 2, 3]"
+numbers.add(4)
+println(readOnlyView)   // prints "[1, 2, 3, 4]"
+readOnlyView.clear()    // -> does not compile
+
+val strings = hashSetOf("a", "b", "c", "c")
+assert(strings.size == 3)
+```
+Collections结合Lambda提供了很多方便的Api
+```
+   arrayListOf(1, 2,3,4)
+                .filter { it == 2 }
+                .map { it to it + 2 }
+                .subList(0, 1)
+                .firstOrNull { it.second == 4 }
+                ?.second ?: return.toString().log()
+```
+
 
 
 
