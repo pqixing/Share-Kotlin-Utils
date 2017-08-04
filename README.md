@@ -170,7 +170,7 @@ Kotlin
 Log.d("list: ${list.size}; tag=$tag; id=$id")
 ```
 
-### 2.2.5 再见，Utils,函数拓展
+### 2.2.5 Bye，Utils
 
 str.equals(“”) ，
 !str.equals(“”)，
@@ -221,8 +221,115 @@ nameView.text = "橘右京"
 你以为我会列出来吗？？？
 [Think too much](http://kotlinlang.org/docs/reference/basic-syntax.html) 
 
-### 3.2 [Kotlin进阶函数的使用](http://www.jianshu.com/p/03db2203e0f2)
-### 3.2.1 TODO
+### 3.2 Koltin结构说明
+### 3.2.1 修饰符
+默认使用public修饰
+```
+>private means visible inside this class only (including all its members);
+>protected — same as private + visible in subclasses too;
+>internal — any client inside this module who sees the declaring class sees its internal members;
+>public — any client who sees the declaring class sees its public members.
+```
+Examples
+```
+// file name: example.kt
+package foo
+
+private fun foo() {} // visible inside example.kt
+
+public var bar: Int = 5 // property is visible everywhere
+    private set         // setter is visible only in example.kt
+    
+internal val baz = 6    // visible inside the same module
+```
+
+### 3.2.2 Class
+#### 3.2.2.1内部类
+```
+open class Outer {
+    private val a = 1
+    protected open val b = 2
+    internal val c = 3
+    val d = 4  // public by default
+    
+    protected class Nested {
+        public val e: Int = 5
+    }
+    Inner class Inter{
+        val f = d+2;
+    }
+}
+
+class Subclass : Outer() {
+    init{
+       a = 2
+    }
+    // a is not visible
+    // b, c and d are visible
+    // Nested and e are visible
+
+    override val b = 5   // 'b' is protected
+}
+
+class Unrelated(o: Outer) {
+    // o.a, o.b are not visible
+    // o.c and o.d are visible (same module)
+    // Outer.Nested is not visible, and Nested::e is not visible either 
+    println("f = $Outer().Inter().f")
+}
+```
+#### 3.2.2.1 匿名内部类
+```
+fun test(){
+   viewPager.addOnPagerChangeListener(object : OnPagerChangeListener{
+   //重写的方法 
+   ....
+   })
+}
+```
+
+### 3.2.2.2 Interfaces
+Kotlin中,接口可以有实现
+```
+interface B {
+    fun f() { print("B") } // interface members are 'open' by default
+    fun b() { print("b") }
+}
+
+open class A {
+    open fun f() { print("A") }
+    fun a() { print("a") }
+}
+class C() : A(), B {
+    // The compiler requires f() to be overridden:
+    override fun f() {
+        super<A>.f() // call to A.f()
+        super<B>.f() // call to B.f()
+    }
+}
+```
+
+### 3.2.2.3 Package Level Fun
+```
+//example.kt
+
+fun test(){
+    println("test")
+}
+
+//Text.kt
+class Test(){
+    fun call(){
+        test()
+    }
+}
+```
+
+
+
+
+### 3.3 [Kotlin进阶函数的使用](http://www.jianshu.com/p/03db2203e0f2)
+### 3.3.1 TODO
     代码运行到这回抛未实现的异常，提醒你这边还未做!
     
 ```
@@ -238,7 +345,7 @@ fun init(){
  ...
 ```
 
-### 3.2.2 apply,with,let...
+### 3.3.2 apply,with,let...
     
 ```
 //使用apply
@@ -273,7 +380,7 @@ val drawable = textView1.let {
 }
 ```
 
-### 3.2.3 lazy
+### 3.3.3 lazy
 
 ```
 fun <T> lazy(initializer: () -> T): Lazy<T>
@@ -308,7 +415,7 @@ val init by lazy { TextView(this).apply {
 init.value.gravity = Gravity.CENTER
 
 ```
-### 3.2.4 repeat,run
+### 3.3.4 repeat,run
 
 ```
 @kotlin.internal.InlineOnly
@@ -328,7 +435,7 @@ repeat(10) { print("index:$it")}
 run {  }
 "xxx".run { toUpperCase() }
 ```
-### 3.2.5 to
+### 3.3.5 to
 
 ```
 public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
@@ -339,7 +446,7 @@ public infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
 val map =  mapOf(1 to 2,2 to 3)
 ```
 
-### 3.3 创建（引入）Kotlin
+### 3.4 创建（引入）Kotlin
     AS操作
 ### 3.4 高阶函数解析，常见使用问题讨论
     函数拓展,函数传递，包级函数...
