@@ -3,10 +3,9 @@
     
  -   Java,Groovy,Gradle......Koltin???
  -   怎么又有新语言出来啊，简直要疯掉了
-    ![image](http://oa5504rxk.bkt.clouddn.com/week29_kotlin/3.png)
-
  -   有困难要上，没困难制造困难也要上。
  -   靠，这尼玛究竟是谁说的，好有道理！
+   ![image](http://oa5504rxk.bkt.clouddn.com/week29_kotlin/3.png)
 
 
 ## 2. 为什么要使用Kotlin
@@ -80,13 +79,13 @@ public class Person{
 ![image](http://oa5504rxk.bkt.clouddn.com/week29_kotlin/4.png)
 
 
-By Kotlin
+> By Kotlin
 ```
 data class Person(val id: Int, val name: String)
 ```
 
 
-### 2.2.2 又见空指针
+### 2.2.2 阿尼陀佛空空空
 常见代码
 
 ```
@@ -111,7 +110,10 @@ public void setPersionName(Persion persion){
 public void setPersionName(Persion persion){
    person.children.wife.sister...wtf.setName("橘右京");
 }
-.................
+................. or 常见的数据模型
+public void onNetBack(Response result){
+  result.getData().getList().get(0).getContents().get(0).getName()//这些法....心惊胆战
+}
 ```
 这时候Kotlin大神说,我不是针对谁,我是说,在座的各位都是....
 
@@ -193,13 +195,19 @@ fun String.notEmpty(){...}
 fun String.isEmpty(){...}
 ```
 
-### 2.2.6 晚安，ButterKnife
-过去 你的 View 都是用 ButterKnife 注入的：
+### 2.2.6 睡吧，ButterKnife
+过去  View 都是用 ButterKnife 注入的：
 
 ```
 @BindView(R.id.nameView) TextView nameView;
 ...
 nameView.setText("橘右京");
+
+or
+ TextView nameView;
+ ...
+    nameView = findViewById(R.id.nameView)
+    nameView.setText("橘右京");
 ...
 ```
 现在
@@ -213,7 +221,7 @@ nameView.text = "橘右京"
 你以为我会列出来吗？？？
 [Think too much](http://kotlinlang.org/docs/reference/basic-syntax.html) 
 
-### 3.2 [Kotlin高阶函数的使用](http://www.jianshu.com/p/03db2203e0f2)
+### 3.2 [Kotlin进阶函数的使用](http://www.jianshu.com/p/03db2203e0f2)
 ### 3.2.1 TODO
     代码运行到这回抛未实现的异常，提醒你这边还未做!
     
