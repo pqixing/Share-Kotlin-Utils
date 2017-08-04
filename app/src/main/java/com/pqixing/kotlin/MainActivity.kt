@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     val str by lazy { "" }
+    val str2 = lazy { "" }
     val KEY_LOGIN_TIMES = "key_login_times"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,10 @@ class MainActivity : AppCompatActivity() {
                 .firstOrNull { it.second == 4 }
                 ?.second ?: return.toString().log()
         textView.text = "0000"
+
+
         str.log()
+        str2.value.log()
     }
 
 }
