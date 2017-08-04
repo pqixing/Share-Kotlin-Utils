@@ -610,3 +610,4 @@ val map =  mapOf(1 to 2,2 to 3)
     AS操作
 ### 3.4 高阶函数解析，常见使用问题讨论
     函数拓展,函数传递，包级函数...
+### [Ktolin For Gradle ](https://github.com/gradle/kotlin-dsl/releases/tag/v0.9.0)
