@@ -217,13 +217,18 @@ or
 ```
 nameView.text = "橘右京"
 ```
-
+>
+>
+>
 ### 3. Kotlin使用
 ### 3.1 基础语法介绍
 你以为我会列出来吗？？？
 [Think too much](http://kotlinlang.org/docs/reference/basic-syntax.html) 
+> ![image](http://img1.cache.netease.com/house/2016/4/27/201604272032280c84c.jpg)
 
+>
 ### 3.2 Koltin结构说明
+>
 ### 3.2.1 修饰符
 默认使用public修饰
 ```
@@ -244,7 +249,7 @@ public var bar: Int = 5 // property is visible everywhere
     
 internal val baz = 6    // visible inside the same module
 ```
-
+>
 ### 3.2.2 Class
 #### 3.2.2.1内部类
 ```
@@ -280,6 +285,8 @@ class Unrelated(o: Outer) {
     println("f = $Outer().Inter().f")
 }
 ```
+>
+
 #### 3.2.2.1 匿名内部类
 ```
 fun test(){
@@ -289,7 +296,7 @@ fun test(){
    })
 }
 ```
-
+> 
 ### 3.2.2.2 Interfaces
 Kotlin中,接口可以有实现
 ```
@@ -310,6 +317,8 @@ class C() : A(), B {
     }
 }
 ```
+>
+>
 ### 3.2.2.3 data class 数据结构类
 ``` 
 -equals()/hashCode() pair,
@@ -330,6 +339,7 @@ val (name, age) = jane
 println("$name, $age years of age") // prints "Jane, 35 years of age"
 ```
 
+>
 ### 3.2.2.4 object class 单例 (类似Java 的Utils)
 例子 
 > Java
@@ -359,6 +369,7 @@ object CommonUtils{
 
 ```
 
+>
 ### 3.2.3 属性 Properties and Fields
 > 上代码
 ```
@@ -384,6 +395,8 @@ var stringRepresentation: String
         setDataFromString(value) // parses the string and assigns values to other properties
     }
 ```
+>
+>
 ### 3.2.4 Functions 函数
 定义
 ```
@@ -442,7 +455,8 @@ class Test{
 ....省
 
 
-
+>
+>
 ### 3.2.5 Collections 集合类
 通用创建方式 xxxOf(...items)
 ```
@@ -469,7 +483,8 @@ Collections结合Lambda提供了很多方便的Api
 
 
 
-
+>
+>
 ### 3.3 [Kotlin进阶函数的使用](http://www.jianshu.com/p/03db2203e0f2)
 ### 3.3.1 TODO
     代码运行到这回抛未实现的异常，提醒你这边还未做!
@@ -577,6 +592,9 @@ repeat(10) { print("index:$it")}
 run {  }
 "xxx".run { toUpperCase() }
 ```
+
+>
+>
 ### 3.3.5 to
 
 ```
@@ -592,3 +610,4 @@ val map =  mapOf(1 to 2,2 to 3)
     AS操作
 ### 3.4 高阶函数解析，常见使用问题讨论
     函数拓展,函数传递，包级函数...
+### [Ktolin For Gradle ](https://github.com/gradle/kotlin-dsl/releases/tag/v0.9.0)
